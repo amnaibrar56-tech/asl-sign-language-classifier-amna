@@ -149,7 +149,7 @@ st.markdown("<p class='sub-title'>Real-Time AI Sign Language Recognition Engine 
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('/content/best_asl_model.keras')
+    return tf.keras.models.load_model('best_asl_model.keras')
 
 with st.spinner("⚡ Initializing Deep Learning Engine..."):
     model = load_model()
