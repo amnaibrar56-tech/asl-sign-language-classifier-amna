@@ -9,7 +9,11 @@ ASL TRAIN DATASET
 
 TRAIN DATASET(zip):[https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing] 
 
+*****CODE
+[https://colab.research.google.com/drive/18NsR3kR7uBmJjEB5p6KI5zm0CbbkPZO3?usp=sharing]
 
 *****AFTER TRANING MODEL
 
 [https://drive.google.com/file/d/1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2/view?usp=sharing]
+
+
