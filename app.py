@@ -2,6 +2,8 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import cv2
+import os
+import gdown
 
 # Page Configuration
 st.set_page_config(
@@ -149,9 +151,14 @@ st.markdown("<p class='sub-title'>Real-Time AI Sign Language Recognition Engine 
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('best_asl_model.keras')
+    model_path = 'best_asl_model.keras'
+    if not os.path.exists(model_path):
+        file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2' 
+        url = f'https://drive.google.com/uc?id={file_id}'
+        gdown.download(url, model_path, quiet=False)
+    return tf.keras.models.load_model(model_path)
 
-with st.spinner("⚡ Initializing Deep Learning Engine..."):
+with st.spinner("⚡ Initializing Deep Learning Engine & Downloading Model..."):
     model = load_model()
 
 labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "del", "nothing", "space"]
@@ -198,7 +205,7 @@ if image_file is not None:
             st.metric(label="Confidence Level", value=f"{max_score * 100:.2f}%")
 
 # ==========================================
-# PROJECT DETAILS & LINKS SECTION (Required by Sir)
+# PROJECT DETAILS & LINKS SECTION
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
