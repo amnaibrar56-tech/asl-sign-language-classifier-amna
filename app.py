@@ -131,6 +131,20 @@ st.markdown("""
         box-shadow: 0 0 30px rgba(255, 75, 43, 1) !important;
     }
     </style>
+
+    <!-- JavaScript to replace 'Clear photo' with 'Retake Photo' -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const observer = new MutationObserver(function(mutations) {
+            document.querySelectorAll('button').forEach(function(btn) {
+                if (btn.innerText.includes("Clear photo")) {
+                    btn.innerText = "🔄 Retake Photo";
+                }
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+    </script>
 """, unsafe_allow_html=True)
 
 # Sidebar UI without separate YouTube link
