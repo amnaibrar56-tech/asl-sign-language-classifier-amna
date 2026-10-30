@@ -133,13 +133,14 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI without separate YouTube link
+# Sidebar UI with LinkedIn Link Added
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
     st.markdown("- [GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
     st.markdown("- [Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)")
+    st.markdown("- [LinkedIn Post Showcase](https://lnkd.in/p/gFFZssgW)")
     st.markdown("- [Project Documentation](#project-documentation)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
