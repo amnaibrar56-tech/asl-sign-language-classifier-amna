@@ -230,7 +230,8 @@ st.markdown("""
 """)
 
 st.markdown("### 3. Project Report")
-st.markdown("Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance.")
+st.markdown("Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance:")
+st.markdown("📄 **[View Complete Project Report Document](https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing&ouid=103764053973789051235&rtpof=true&sd=true)**")
 
 st.markdown("### 4. Presentation & Video Demonstration")
 st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
