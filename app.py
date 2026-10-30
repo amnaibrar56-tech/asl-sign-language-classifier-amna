@@ -133,14 +133,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI with Project Links
+# Sidebar UI without separate YouTube link
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
     st.markdown("[GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
     st.markdown("[Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)", unsafe_allow_html=True)
-    st.markdown("[YouTube Demonstration](https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq)", unsafe_allow_html=True)
     st.markdown("[Project Report](#project-report)")
     st.markdown("[Presentation & YouTube](#presentation-youtube)")
     st.markdown("---")
@@ -174,67 +173,4 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Camera Box Input
-image_file = st.camera_input("Take a picture of your sign")
-
-if image_file is not None:
-    bytes_data = image_file.getvalue()
-    cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-    img_resized = cv2.resize(cv2_img, (224, 224)) / 255.0
-    img_expanded = np.expand_dims(img_resized, axis=0)
-    
-    with st.spinner("Analyzing Hand Gesture..."):
-        predictions = model.predict(img_expanded)
-        max_score = np.max(predictions)
-        predicted_label = labels[np.argmax(predictions)]
-    
-    st.write("---")
-    
-    if max_score < CONFIDENCE_THRESHOLD or predicted_label == "nothing":
-        st.error("**Invalid / Unrecognized Sign**\nPlease show a clear ASL hand gesture from the 29 trained classes.")
-    else:
-        st.markdown(f"""
-            <div class="result-card">
-                <h2 style="color: #FF416C; margin-top: 0; font-weight: 800;">Gesture Detected Successfully</h2>
-                <p style="color: #cbd5e1; margin-bottom: 0;">High precision match confirmed by deep neural network.</p>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.metric(label="Detected Alphabet", value=predicted_label)
-        with col2:
-            st.metric(label="Confidence Level", value=f"{max_score * 100:.2f}%")
-
-# ==========================================
-# PROJECT DETAILS & LINKS SECTION
-# ==========================================
-st.markdown("<br><br>", unsafe_allow_html=True)
-st.markdown("""
-    <div class="info-box">
-        <h2 style="color: #FF416C; margin-top: 0; font-weight: 800;">Project Documentation & Links</h2>
-        <p style="color: #cbd5e1;">Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.</p>
-        <hr style="border-color: rgba(168, 85, 247, 0.3);">
-        
-        <h3 style="color: #A855F7;">1. Source Code & Repository</h3>
-        <p>Access the complete source code, trained model files, and deployment scripts on GitHub:</p>
-        <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank" style="color: #00E5FF; font-weight: bold; font-size: 1.1rem;">Click here to view GitHub Repository</a>
-        
-        <h3 style="color: #A855F7; margin-top: 20px;">2. Dataset & Architecture Details</h3>
-        <ul style="color: #cbd5e1;">
-            <li><b>Official Dataset Source:</b> <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank" style="color: #00E5FF;">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).</li>
-            <li><b>Dataset Splits (Google Drive):</b> 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;• <a href="https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing" target="_blank" style="color: #00E5FF;">Training Set (asl_alphabet_train.zip)</a>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;• <a href="https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing" target="_blank" style="color: #00E5FF;">Testing Set (asl_alphabet_test.zip)</a>
-            </li>
-            <li><b>Model Architecture:</b> MobileNetV2 (Transfer Learning with Fine-Tuning).</li>
-            <li><b>Preprocessing:</b> Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.</li>
-        </ul>
-        
-        <h3 id="project-report" style="color: #A855F7; margin-top: 20px;">3. Project Report</h3>
-        <p style="color: #cbd5e1;">Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance.</p>
-        
-        <h3 id="presentation-youtube" style="color: #A855F7; margin-top: 20px;">4. Presentation & Video Demonstration</h3>
-        <p style="color: #cbd5e1;">Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:</p>
-        <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank" style="color: #00E5FF; font-weight: bold; font-size: 1.1rem;">Watch YouTube Demonstration & Presentation</a>
-    </div>
-""", unsafe_allow_html=True)
+image_file
