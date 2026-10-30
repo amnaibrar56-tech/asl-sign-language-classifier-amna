@@ -133,7 +133,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI with LinkedIn Link Added
+# Sidebar UI with Presentation Link Added
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -141,6 +141,7 @@ with st.sidebar:
     st.markdown("- [GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
     st.markdown("- [Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)")
     st.markdown("- [LinkedIn Post Showcase](https://lnkd.in/p/gFFZssgW)")
+    st.markdown("- [Presentation Slides](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing)")
     st.markdown("- [Project Documentation](#project-documentation)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
@@ -233,9 +234,10 @@ st.markdown("""
 - **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.
 """)
 
-st.markdown("### 3. Project Report")
-st.markdown("Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance:")
+st.markdown("### 3. Project Report & Presentation Slides")
+st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
 st.markdown("📄 **[View Complete Project Report Document](https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing&ouid=103764053973789051235&rtpof=true&sd=true)**")
+st.markdown("📊 **[View Google Slides Presentation Deck](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing&ouid=103764053973789051235&rtpof=true&sd=true)**")
 
 st.markdown("### 4. Presentation & Video Demonstration")
 st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
