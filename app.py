@@ -138,10 +138,9 @@ with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
-    st.markdown("[GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
-    st.markdown("[Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)", unsafe_allow_html=True)
-    st.markdown("[Project Report](#project-report)")
-    st.markdown("[Presentation & YouTube](#presentation-youtube)")
+    st.markdown("- [GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
+    st.markdown("- [Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)")
+    st.markdown("- [Project Documentation](#project-documentation)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
 
@@ -208,32 +207,31 @@ if image_file is not None:
 # PROJECT DETAILS & LINKS SECTION
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<div id='project-documentation'></div>", unsafe_allow_html=True)
+
 st.markdown("""
-    <div class="info-box">
-        <h2 style="color: #FF416C; margin-top: 0; font-weight: 800;">Project Documentation & Links</h2>
-        <p style="color: #cbd5e1;">Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.</p>
-        <hr style="border-color: rgba(168, 85, 247, 0.3);">
-        
-        <h3 style="color: #A855F7;">1. Source Code & Repository</h3>
-        <p>Access the complete source code, trained model files, and deployment scripts on GitHub:</p>
-        <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank" style="color: #00E5FF; font-weight: bold; font-size: 1.1rem;">Click here to view GitHub Repository</a>
-        
-        <h3 style="color: #A855F7; margin-top: 20px;">2. Dataset & Architecture Details</h3>
-        <ul style="color: #cbd5e1;">
-            <li><b>Official Dataset Source:</b> <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank" style="color: #00E5FF;">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).</li>
-            <li><b>Dataset Splits (Google Drive):</b> 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;• <a href="https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing" target="_blank" style="color: #00E5FF;">Training Set (asl_alphabet_train.zip)</a>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;• <a href="https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing" target="_blank" style="color: #00E5FF;">Testing Set (asl_alphabet_test.zip)</a>
-            </li>
-            <li><b>Model Architecture:</b> MobileNetV2 (Transfer Learning with Fine-Tuning).</li>
-            <li><b>Preprocessing:</b> Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.</li>
-        </ul>
-        
-        <h3 id="project-report" style="color: #A855F7; margin-top: 20px;">3. Project Report</h3>
-        <p style="color: #cbd5e1;">Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance.</p>
-        
-        <h3 id="presentation-youtube" style="color: #A855F7; margin-top: 20px;">4. Presentation & Video Demonstration</h3>
-        <p style="color: #cbd5e1;">Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:</p>
-        <a href="https://www.youtube.com/watch?v=IXB1XMnrh50" target="_blank" style="color: #00E5FF; font-weight: bold; font-size: 1.1rem;">Watch YouTube Demonstration & Presentation</a>
-    </div>
-""", unsafe_allow_html=True)
+### 📂 Project Documentation & Links
+Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.
+""")
+st.markdown("---")
+
+st.markdown("### 1. Source Code & Repository")
+st.markdown("Access the complete source code, trained model files, and deployment scripts on GitHub:")
+st.markdown("👉 **[Click here to view GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)**")
+
+st.markdown("### 2. Dataset & Architecture Details")
+st.markdown("""
+- **Official Dataset Source:** [Kaggle ASL Alphabet Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet) (29 Classes: A-Z, space, del, nothing).
+- **Dataset Splits (Google Drive):** 
+  - [Training Set (asl_alphabet_train.zip)](https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing)
+  - [Testing Set (asl_alphabet_test.zip)](https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing)
+- **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).
+- **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.
+""")
+
+st.markdown("### 3. Project Report")
+st.markdown("Comprehensive documentation outlining training metrics, validation accuracy, and architecture performance.")
+
+st.markdown("### 4. Presentation & Video Demonstration")
+st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
+st.markdown("🎥 **[Watch YouTube Demonstration & Presentation](https://www.youtube.com/watch?v=IXB1XMnrh50)**")
