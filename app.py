@@ -171,6 +171,9 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# Helper instruction so users understand the "Clear photo" button resets the capture
+st.caption("💡 **Tip:** To test another sign, click the **'Clear photo'** button above to reset and take a new picture.")
+
 # Camera Box Input
 image_file = st.camera_input("Take a picture of your sign")
 
@@ -202,9 +205,6 @@ if image_file is not None:
             st.metric(label="Detected Alphabet", value=predicted_label)
         with col2:
             st.metric(label="Confidence Level", value=f"{max_score * 100:.2f}%")
-            
-        # Helpful guidance for testing another sign
-        st.info("💡 **Want to try another sign?** Click recapture above to test again.")
 
 # ==========================================
 # PROJECT DETAILS & LINKS SECTION
