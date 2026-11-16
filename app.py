@@ -128,12 +128,12 @@ with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
-    st.markdown('- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>', unsafe_allow_html=True)
+    st.markdown("""- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>""", unsafe_allow_html=True)
     st.markdown("- [Jump to All Links ⬇️](#project-documentation-links)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
@@ -187,7 +187,7 @@ if image_file is not None:
     if max_score < CONFIDENCE_THRESHOLD or predicted_label == "nothing":
         st.error("**Invalid / Unrecognized Sign**\nPlease show a clear ASL hand gesture from the 29 trained classes.")
     else:
-        st.markdown(f"""
+        st.markdown("""
             <div class="result-card">
                 <h2 style="color: #FF416C; margin-top: 0; font-weight: 800;">Gesture Detected Successfully</h2>
                 <p style="color: #cbd5e1; margin-bottom: 0;">High precision match confirmed by deep neural network.</p>
@@ -210,7 +210,7 @@ st.markdown("---")
 
 st.markdown("### 1. Source Code & Repository")
 st.markdown("Access the complete source code, trained model files, and deployment scripts on GitHub:")
-st.markdown('👉 <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>', unsafe_allow_html=True)
+st.markdown("""👉 <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>""", unsafe_allow_html=True)
 
 st.markdown("### 2. Dataset & Architecture Details")
 st.markdown("""
@@ -224,9 +224,9 @@ st.markdown("""
 
 st.markdown("### 3. Project Report & Presentation Slides")
 st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
-st.markdown('📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>', unsafe_allow_html=True)
-st.markdown('📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>', unsafe_allow_html=True)
+st.markdown("""📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>""", unsafe_allow_html=True)
+st.markdown("""📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>""", unsafe_allow_html=True)
 
 st.markdown("### 4. Presentation & Video Demonstration")
 st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown('🎥 <a href="
+st.markdown("""🎥 <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank"><b>Watch YouTube Demonstration & Presentation</b></a>""", unsafe_allow_html=True)
