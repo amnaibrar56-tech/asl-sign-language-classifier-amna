@@ -105,32 +105,3 @@ if image_file is not None:
             st.metric(label="Detected Alphabet", value=predicted_label)
         with col2:
             st.metric(label="Confidence Level", value=f"{max_score * 100:.2f}%")
-
-# ==========================================
-# PROJECT DETAILS & LINKS SECTION
-# ==========================================
-st.markdown("<br><br>", unsafe_allow_html=True)
-st.header("📂 Project Documentation & Links")
-st.markdown("Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.")
-st.markdown("---")
-
-st.markdown("### 1. Source Code & Repository")
-st.markdown("Access the complete source code, trained model files, and deployment scripts on GitHub:")
-st.markdown('- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>', unsafe_allow_html=True)
-
-st.markdown("### 2. Dataset & Architecture Details")
-st.markdown("- **Official Dataset Source:** [Kaggle ASL Alphabet Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet) (29 Classes: A-Z, space, del, nothing).")
-st.markdown("- **Dataset Splits (Google Drive):**")
-st.markdown("  - [Training Set (asl_alphabet_train.zip)](https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing)")
-st.markdown("  - [Testing Set (asl_alphabet_test.zip)](https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing)")
-st.markdown("- **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).")
-st.markdown("- **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.")
-
-st.markdown("### 3. Project Report & Presentation Slides")
-st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
-st.markdown('- 📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>', unsafe_allow_html=True)
-st.markdown('- 📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>', unsafe_allow_html=True)
-
-st.markdown("### 4. Presentation & Video Demonstration")
-st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown('- 🎥 <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank"><b>Watch YouTube Demonstration & Presentation</b></a>', unsafe_allow_html=True)
