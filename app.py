@@ -123,7 +123,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI with Working Links & Direct Documentation Access
+# Sidebar UI
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -134,7 +134,6 @@ with st.sidebar:
     st.markdown("""- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>""", unsafe_allow_html=True)
     st.markdown("""- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>""", unsafe_allow_html=True)
     st.markdown("""- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>""", unsafe_allow_html=True)
-    st.markdown("- [Jump to All Links ⬇️](#project-documentation-links)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
 
@@ -148,85 +147,7 @@ def load_model():
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
         url = f'https://drive.google.com/uc?id={file_id}'
-        gdown.download(url, model_path, quiet=False)
-    return tf.keras.models.load_model(model_path, compile=False)
-
-with st.spinner("Initializing Deep Learning Engine..."):
-    model = load_model()
-
-labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "del", "nothing", "space"]
-
-CONFIDENCE_THRESHOLD = 0.90
-
-# Prominent Camera Banner
-st.markdown("""
-    <div class="camera-banner">
-        <h3>POSITION YOUR HAND & CLICK "TAKE PHOTO" BELOW</h3>
-    </div>
-""", unsafe_allow_html=True)
-
-# Helper instruction so users understand the "Clear photo" button resets the capture
-st.caption("💡 **Tip:** To test another sign, click the **'Clear photo'** button above to reset and take a new picture.")
-
-# Camera Box Input
-image_file = st.camera_input("Take a picture of your sign")
-
-if image_file is not None:
-    bytes_data = image_file.getvalue()
-    cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-    img_resized = cv2.resize(cv2_img, (224, 224)) / 255.0
-    img_expanded = np.expand_dims(img_resized, axis=0)
-    
-    with st.spinner("Analyzing Hand Gesture..."):
-        predictions = model.predict(img_expanded)
-        max_score = np.max(predictions)
-        predicted_label = labels[np.argmax(predictions)]
-    
-    st.write("---")
-    
-    if max_score < CONFIDENCE_THRESHOLD or predicted_label == "nothing":
-        st.error("**Invalid / Unrecognized Sign**\nPlease show a clear ASL hand gesture from the 29 trained classes.")
-    else:
-        st.markdown("""
-            <div class="result-card">
-                <h2 style="color: #FF416C; margin-top: 0; font-weight: 800;">Gesture Detected Successfully</h2>
-                <p style="color: #cbd5e1; margin-bottom: 0;">High precision match confirmed by deep neural network.</p>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.metric(label="Detected Alphabet", value=predicted_label)
-        with col2:
-            st.metric(label="Confidence Level", value=f"{max_score * 100:.2f}%")
-
-# ==========================================
-# PROJECT DETAILS & LINKS SECTION
-# ==========================================
-st.markdown("<br><br>", unsafe_allow_html=True)
-st.header("📂 Project Documentation & Links", anchor="project-documentation-links")
-st.markdown("Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.")
-st.markdown("---")
-
-st.markdown("### 1. Source Code & Repository")
-st.markdown("Access the complete source code, trained model files, and deployment scripts on GitHub:")
-st.markdown("""👉 <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>""", unsafe_allow_html=True)
-
-st.markdown("### 2. Dataset & Architecture Details")
-st.markdown("""
-- **Official Dataset Source:** <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).
-- **Dataset Splits (Google Drive):** 
-  - <a href="https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing" target="_blank">Training Set (asl_alphabet_train.zip)</a>
-  - <a href="https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing" target="_blank">Testing Set (asl_alphabet_test.zip)</a>
-- **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).
-- **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.
-""", unsafe_allow_html=True)
-
-st.markdown("### 3. Project Report & Presentation Slides")
-st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
-st.markdown("""📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>""", unsafe_allow_html=True)
-st.markdown("""📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>""", unsafe_allow_html=True)
-
-st.markdown("### 4. Presentation & Video Demonstration")
-st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown("""🎥 <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank"><b>Watch YouTube Demonstration & Presentation</b></a>""", unsafe_allow_html=True)
+        try:
+            gdown.download(url, model_path, quiet=False, fuzzy=True)
+        except Exception:
+            alt_url = f'
