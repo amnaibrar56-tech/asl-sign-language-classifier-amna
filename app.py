@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import os
-import gdown
+import urllib.request
 
 # Page Configuration
 st.set_page_config(
@@ -54,8 +54,9 @@ def load_model():
     model_path = 'best_asl_model.keras'
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
-        # Fixed gdown download using id and fuzzy correctly
-        gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
+        url = f'https://drive.google.com/uc?export=download&id={file_id}'
+        with st.spinner("Downloading model from Google Drive (Please wait)..."):
+            urllib.request.urlretrieve(url, model_path)
     return tf.keras.models.load_model(model_path, compile=False)
 
 with st.spinner("Initializing Deep Learning Engine..."):
