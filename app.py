@@ -146,8 +146,9 @@ def load_model():
     model_path = 'best_asl_model.keras'
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
-        # Using gdown with id parameter correctly to avoid TypeErrors
-        gdown.download(id=file_id, output=model_path, quiet=False)
+        url = f'https://drive.google.com/uc?export=download&id={file_id}'
+        # Using fuzzy=True to bypass Google Drive's large file virus-scan warning page
+        gdown.download(url, model_path, quiet=False, fuzzy=True)
     return tf.keras.models.load_model(model_path, compile=False)
 
 with st.spinner("Initializing Deep Learning Engine..."):
@@ -214,17 +215,4 @@ st.markdown("### 2. Dataset & Architecture Details")
 st.markdown("""
 - **Official Dataset Source:** <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).
 - **Dataset Splits (Google Drive):** 
-  - <a href="https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing" target="_blank">Training Set (asl_alphabet_train.zip)</a>
-  - <a href="https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing" target="_blank">Testing Set (asl_alphabet_test.zip)</a>
-- **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).
-- **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.
-""", unsafe_allow_html=True)
-
-st.markdown("### 3. Project Report & Presentation Slides")
-st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
-st.markdown("""📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>""", unsafe_allow_html=True)
-st.markdown("""📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>""", unsafe_allow_html=True)
-
-st.markdown("### 4. Presentation & Video Demonstration")
-st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown("""🎥 <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank"><b>Watch YouTube Demonstration & Presentation</b></a>""", unsafe_allow_html=True)
+  - <a href="
