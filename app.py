@@ -3,6 +3,7 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import os
+import gdown
 
 # Page Configuration
 st.set_page_config(
@@ -132,15 +133,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI with Presentation Link Added
+# Sidebar UI with YouTube Video, Presentation, and LinkedIn Links
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
-    st.markdown("- [GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)")
-    st.markdown("- [Kaggle Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)")
-    st.markdown("- [LinkedIn Post Showcase](https://lnkd.in/p/gFFZssgW)")
-    st.markdown("- [Presentation Slides](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing)")
+    st.markdown('- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://lnkd.in/dV6kcj4i" target="_blank">YouTube Demo Video</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>', unsafe_allow_html=True)
     st.markdown("- [Project Documentation](#project-documentation)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
@@ -152,7 +154,10 @@ st.markdown("<p class='sub-title'>Real-Time AI Sign Language Recognition Engine 
 @st.cache_resource
 def load_model():
     model_path = 'best_asl_model.keras'
-    return tf.keras.models.load_model(model_path)
+    if not os.path.exists(model_path):
+        file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
+        gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
+    return tf.keras.models.load_model(model_path, compile=False)
 
 with st.spinner("Initializing Deep Learning Engine..."):
     model = load_model()
@@ -236,4 +241,4 @@ st.markdown("📊 **[View Google Slides Presentation Deck](https://docs.google.c
 
 st.markdown("### 4. Presentation & Video Demonstration")
 st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown("🎥 **[Watch YouTube Demonstration & Presentation](https://www.youtube.com/watch?v=IXB1XMnrh50)**")
+st.markdown("🎥 **[Watch YouTube Demonstration & Presentation](https://lnkd.in/dV6kcj4i)**")
