@@ -146,12 +146,8 @@ def load_model():
     model_path = 'best_asl_model.keras'
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
-        url = f'https://drive.google.com/uc?id={file_id}'
-        try:
-            gdown.download(url, model_path, quiet=False, fuzzy=True)
-        except Exception:
-            alt_url = f'https://drive.google.com/uc?export=download&id={file_id}'
-            gdown.download(alt_url, model_path, quiet=False, fuzzy=True)
+        # Using gdown with id parameter correctly to avoid TypeErrors
+        gdown.download(id=file_id, output=model_path, quiet=False)
     return tf.keras.models.load_model(model_path, compile=False)
 
 with st.spinner("Initializing Deep Learning Engine..."):
