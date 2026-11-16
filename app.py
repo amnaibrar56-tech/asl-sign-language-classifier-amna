@@ -128,12 +128,12 @@ with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("### Quick Navigation")
-    st.markdown("""- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>""", unsafe_allow_html=True)
-    st.markdown("""- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>""", unsafe_allow_html=True)
-    st.markdown("""- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>""", unsafe_allow_html=True)
-    st.markdown("""- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>""", unsafe_allow_html=True)
-    st.markdown("""- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>""", unsafe_allow_html=True)
-    st.markdown("""- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>""", unsafe_allow_html=True)
+    st.markdown('- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>', unsafe_allow_html=True)
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
 
@@ -147,7 +147,168 @@ def load_model():
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
         url = f'https://drive.google.com/uc?export=download&id={file_id}'
-        # Using fuzzy=True to bypass Google Drive's large file virus-scan warning page
+        gdown.download(url, model_path, quiet=False, fuzzy=True)
+    return tf.keras.models.load_model(model_path, compile=False)
+
+with st.spinner("Initializing Deep Learning Engine..."):
+    model = load_model()
+
+labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "KAmna, yeh `SyntaxError` isliye aa raha hai kyunki multi-line `st.markdown("""...""")` block ke andar HTML tags aur quotes ki waja se Python ka parser confuse ho gaya tha.
+
+Iska sabse asan aur 100% error-free hal yeh hai ke hum section 2 ko alag-alag clean lines mein likh lein taake koi syntax mismatch na ho.
+
+Yeh lijiye aapka **poora aur bilkul theek kiya hua `app.py` code**:
+
+```python
+import streamlit as st
+import tensorflow as tf
+import numpy as np
+import cv2
+import os
+import gdown
+
+# Page Configuration
+st.set_page_config(
+    page_title="ASL AI Classifier - Project Showcase",
+    page_icon="🤟",
+    layout="centered",
+    initial_sidebar_state="expanded"
+)
+
+# Ultra-Vibrant High-Tech Styling with Complete Project Links Integration
+st.markdown("""
+    <style>
+    /* Dark Premium Gradient Background */
+    .stApp {
+        background: linear-gradient(135deg, #0b0f19 0%, #17102e 50%, #0f172a 100%);
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Sidebar Styling */
+    section[data-testid="stSidebar"] {
+        background-color: #0f0b1e;
+        border-right: 1px solid rgba(168, 85, 247, 0.2);
+    }
+    
+    /* Main Title Glowing Gradient */
+    .main-title {
+        font-size: 2.8rem;
+        font-weight: 900;
+        background: linear-gradient(90deg, #FF416C, #FF4B2B, #A855F7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 0.2rem;
+        text-shadow: 0 0 20px rgba(255, 65, 108, 0.3);
+    }
+    
+    .sub-title {
+        text-align: center;
+        color: #cbd5e1;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 1.8rem;
+    }
+
+    /* Prominent Camera Header Banner */
+    .camera-banner {
+        background: linear-gradient(90deg, rgba(255, 65, 108, 0.25), rgba(168, 85, 247, 0.25));
+        border: 2px solid #FF416C;
+        border-radius: 14px;
+        padding: 12px 20px;
+        text-align: center;
+        margin-bottom: 15px;
+        box-shadow: 0 0 25px rgba(255, 65, 108, 0.5);
+    }
+    
+    .camera-banner h3 {
+        color: #FF416C !important;
+        margin: 0 !important;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    /* Glassmorphism Card for Results */
+    .result-card {
+        background: rgba(30, 27, 75, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 65, 108, 0.4);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(255, 65, 108, 0.15);
+        margin-top: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Streamlit Metrics Styling */
+    [data-testid="stMetricValue"] {
+        font-size: 2.5rem !important;
+        color: #FF416C !important;
+        font-weight: 800;
+        text-shadow: 0 0 10px rgba(255, 65, 108, 0.4);
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #e2e8f0 !important;
+        font-size: 1rem !important;
+        font-weight: 600;
+    }
+
+    /* Camera Container Wrapper Box */
+    div[data-testid="stCameraInput"] {
+        border: 3px solid #FF416C;
+        border-radius: 18px;
+        padding: 10px;
+        background: rgba(15, 11, 30, 0.7);
+        box-shadow: 0 0 25px rgba(255, 65, 108, 0.5);
+    }
+
+    /* Glowing Capture Button */
+    div[data-testid="stCameraInput"] button {
+        background: linear-gradient(90deg, #FF416C 0%, #FF4B2B 100%) !important;
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        font-weight: 800 !important;
+        border: 2px solid #ffffff !important;
+        border-radius: 12px !important;
+        padding: 12px 30px !important;
+        box-shadow: 0 0 20px rgba(255, 65, 108, 0.8) !important;
+        transition: all 0.3s ease-in-out !important;
+    }
+
+    div[data-testid="stCameraInput"] button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 0 30px rgba(255, 75, 43, 1) !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# Sidebar UI
+with st.sidebar:
+    st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
+    st.markdown("---")
+    st.markdown("### Quick Navigation")
+    st.markdown("""- <a href="[https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)" target="_blank">GitHub Repository</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="[https://www.kaggle.com/datasets/grassknoted/asl-alphabet](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)" target="_blank">Kaggle Dataset</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="[https://lnkd.in/p/gFFZssgW](https://lnkd.in/p/gFFZssgW)" target="_blank">LinkedIn Post Showcase</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="[https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq](https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq)" target="_blank">YouTube Demo Video</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="[https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing)" target="_blank">Presentation Slides</a>""", unsafe_allow_html=True)
+    st.markdown("""- <a href="[https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing](https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing)" target="_blank">Project Report (Doc)</a>""", unsafe_allow_html=True)
+    st.markdown("---")
+    st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
+
+# Main Header
+st.markdown("<h1 class='main-title'>ASL Alphabet Classifier</h1>", unsafe_allow_html=True)
+st.markdown("<p class='sub-title'>Real-Time AI Sign Language Recognition Engine (MobileNetV2)</p>", unsafe_allow_html=True)
+
+@st.cache_resource
+def load_model():
+    model_path = 'best_asl_model.keras'
+    if not os.path.exists(model_path):
+        file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
+        url = f'[https://drive.google.com/uc?export=download&id=](https://drive.google.com/uc?export=download&id=){file_id}'
         gdown.download(url, model_path, quiet=False, fuzzy=True)
     return tf.keras.models.load_model(model_path, compile=False)
 
@@ -212,7 +373,18 @@ st.markdown("Access the complete source code, trained model files, and deploymen
 st.markdown("""👉 <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>""", unsafe_allow_html=True)
 
 st.markdown("### 2. Dataset & Architecture Details")
-st.markdown("""
-- **Official Dataset Source:** <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).
-- **Dataset Splits (Google Drive):** 
-  - <a href="
+st.markdown("- **Official Dataset Source:** [Kaggle ASL Alphabet Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet) (29 Classes: A-Z, space, del, nothing).")
+st.markdown("- **Dataset Splits (Google Drive):**")
+st.markdown("  - [Training Set (asl_alphabet_train.zip)](https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing)")
+st.markdown("  - [Testing Set (asl_alphabet_test.zip)](https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing)")
+st.markdown("- **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).")
+st.markdown("- **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.")
+
+st.markdown("### 3. Project Report & Presentation Slides")
+st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
+st.markdown("""📄 <a href="[https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing](https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing)" target="_blank"><b>View Complete Project Report Document</b></a>""", unsafe_allow_html=True)
+st.markdown("""📊 <a href="[https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing)" target="_blank"><b>View Google Slides Presentation Deck</b></a>""", unsafe_allow_html=True)
+
+st.markdown("### 4. Presentation & Video Demonstration")
+st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
+st.markdown("""🎥 <a href="[https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq](https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq)" target="_blank"><b>Watch YouTube Demonstration & Presentation</b></a>""", unsafe_allow_html=True)
