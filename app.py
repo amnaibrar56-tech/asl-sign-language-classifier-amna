@@ -80,16 +80,6 @@ st.markdown("""
         text-align: center;
     }
 
-    /* Project Info Section Box */
-    .info-box {
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid rgba(168, 85, 247, 0.3);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 30px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-
     /* Streamlit Metrics Styling */
     [data-testid="stMetricValue"] {
         font-size: 2.5rem !important;
@@ -133,7 +123,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar UI with YouTube Video, Presentation, and LinkedIn Links
+# Sidebar UI with Working Links & Direct Documentation Access
 with st.sidebar:
     st.markdown("<h2 style='color: #FF416C; font-weight: 800;'>Project Hub</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -141,9 +131,10 @@ with st.sidebar:
     st.markdown('- <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank">GitHub Repository</a>', unsafe_allow_html=True)
     st.markdown('- <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle Dataset</a>', unsafe_allow_html=True)
     st.markdown('- <a href="https://lnkd.in/p/gFFZssgW" target="_blank">LinkedIn Post Showcase</a>', unsafe_allow_html=True)
-    st.markdown('- <a href="https://lnkd.in/dV6kcj4i" target="_blank">YouTube Demo Video</a>', unsafe_allow_html=True)
+    st.markdown('- <a href="https://youtu.be/IXB1XMnrh50?si=GhmlxMhEQBmHYVwq" target="_blank">YouTube Demo Video</a>', unsafe_allow_html=True)
     st.markdown('- <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank">Presentation Slides</a>', unsafe_allow_html=True)
-    st.markdown("- [Project Documentation](#project-documentation)")
+    st.markdown('- <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank">Project Report (Doc)</a>', unsafe_allow_html=True)
+    st.markdown("- [Jump to All Links ⬇️](#project-documentation-links)")
     st.markdown("---")
     st.info("**Tips for Best Accuracy:**\n- Bring hand close to camera.\n- Ensure proper lighting.\n- Keep background clean.")
 
@@ -156,7 +147,8 @@ def load_model():
     model_path = 'best_asl_model.keras'
     if not os.path.exists(model_path):
         file_id = '1rlXbsUw7wxDjrE1sARPLE2tdF4UaKkr2'
-        gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
+        url = f'https://drive.google.com/uc?id={file_id}'
+        gdown.download(url, model_path, quiet=False)
     return tf.keras.models.load_model(model_path, compile=False)
 
 with st.spinner("Initializing Deep Learning Engine..."):
@@ -212,33 +204,29 @@ if image_file is not None:
 # PROJECT DETAILS & LINKS SECTION
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
-st.markdown("<div id='project-documentation'></div>", unsafe_allow_html=True)
-
-st.markdown("""
-### 📂 Project Documentation & Links
-Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.
-""")
+st.header("📂 Project Documentation & Links", anchor="project-documentation-links")
+st.markdown("Here you can find all the official resources, source code, dataset references, and presentation links associated with this Deep Learning semester project.")
 st.markdown("---")
 
 st.markdown("### 1. Source Code & Repository")
 st.markdown("Access the complete source code, trained model files, and deployment scripts on GitHub:")
-st.markdown("👉 **[Click here to view GitHub Repository](https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna)**")
+st.markdown('👉 <a href="https://github.com/amnaibrar56-tech/asl-sign-language-classifier-amna" target="_blank"><b>Click here to view GitHub Repository</b></a>', unsafe_allow_html=True)
 
 st.markdown("### 2. Dataset & Architecture Details")
 st.markdown("""
-- **Official Dataset Source:** [Kaggle ASL Alphabet Dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet) (29 Classes: A-Z, space, del, nothing).
+- **Official Dataset Source:** <a href="https://www.kaggle.com/datasets/grassknoted/asl-alphabet" target="_blank">Kaggle ASL Alphabet Dataset</a> (29 Classes: A-Z, space, del, nothing).
 - **Dataset Splits (Google Drive):** 
-  - [Training Set (asl_alphabet_train.zip)](https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing)
-  - [Testing Set (asl_alphabet_test.zip)](https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing)
+  - <a href="https://drive.google.com/file/d/1zD66nVXa4qYGsXMnflMThFUmOfvuIE7i/view?usp=sharing" target="_blank">Training Set (asl_alphabet_train.zip)</a>
+  - <a href="https://drive.google.com/file/d/1qQwb4zdq-bMrVFgMBoYgvnyEUA5w1l_B/view?usp=sharing" target="_blank">Testing Set (asl_alphabet_test.zip)</a>
 - **Model Architecture:** MobileNetV2 (Transfer Learning with Fine-Tuning).
 - **Preprocessing:** Resized to 224x224 pixels, normalized with strict 90% confidence threshold validation.
-""")
+""", unsafe_allow_html=True)
 
 st.markdown("### 3. Project Report & Presentation Slides")
 st.markdown("Comprehensive documentation and slide decks outlining training metrics, validation accuracy, and architecture performance:")
-st.markdown("📄 **[View Complete Project Report Document](https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing&ouid=103764053973789051235&rtpof=true&sd=true)**")
-st.markdown("📊 **[View Google Slides Presentation Deck](https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing&ouid=103764053973789051235&rtpof=true&sd=true)**")
+st.markdown('📄 <a href="https://docs.google.com/document/d/1f_JV5tv2nYRnmGvbCF5fMBYoSrS1G-SC/edit?usp=sharing" target="_blank"><b>View Complete Project Report Document</b></a>', unsafe_allow_html=True)
+st.markdown('📊 <a href="https://docs.google.com/presentation/d/1Ejmb5liFH-q7EhxWrU2NaIgje9Bx-B0c/edit?usp=sharing" target="_blank"><b>View Google Slides Presentation Deck</b></a>', unsafe_allow_html=True)
 
 st.markdown("### 4. Presentation & Video Demonstration")
 st.markdown("Complete walkthrough, slide deck, and live demonstration video showcasing the real-time recognition pipeline:")
-st.markdown("🎥 **[Watch YouTube Demonstration & Presentation](https://lnkd.in/dV6kcj4i)**")
+st.markdown('🎥 <a href="
